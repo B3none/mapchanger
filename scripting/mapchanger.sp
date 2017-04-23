@@ -6,6 +6,8 @@
 #include <sdktools>
 #pragma newdecls required
 
+#define TAG_MESSAGE "[\x0CB3none_MapChecker\x01]"
+
 public Plugin myinfo = 
 {
     name =            "Map Checker",
@@ -17,12 +19,23 @@ public Plugin myinfo =
 
 public void OnMapStart()
 {
+	CreateTimer(5.0, CheckMap);
+	PrintToChatAll("%s Timer Started", TAG_MESSAGE);
+}
+
+public Action CheckMap(Handle timer)
+{
 	char map[32];
-	Format(map, sizeof(map), "%s", GetCurrentMap(map, sizeof(map)));
+	GetCurrentMap(map, sizeof(map));
 	
-	if(StrEqual(map, "de_dust") || StrEqual(map, "de_aztec") || StrEqual(map, "de_nuke"))
+	if(StrEqual(map, "de_dust", false) || StrEqual(map, "de_nuke", false) || StrEqual(map, "de_aztec", false))
 	{
-		PrintToChatAll("[\x0CB3none_MapChecker\x01] Eek! This is %s, the map will be changed!", map);
+		PrintToChatAll("%s Eek! This is %s, the map will be changed!", TAG_MESSAGE, map);
 		ServerCommand("map de_mirage");
+	}
+	
+	else
+	{
+		PrintToChatAll("%s This map is %s, enjoy the game!", TAG_MESSAGE, map);
 	}
 }
