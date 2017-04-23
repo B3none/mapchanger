@@ -20,8 +20,9 @@ public void OnMapStart()
 	char map[32];
 	Format(map, sizeof(map), "%s", GetCurrentMap(map, sizeof(map)));
 	
-	if(StrEqual(map, "de_dust"))
+	if(StrEqual(map, "de_dust") || StrEqual(map, "de_aztec") || StrEqual(map, "de_nuke"))
 	{
+		PrintToChatAll("[\x0CB3none_MapChecker\x01] Eek! This is %s, the map will be changed!", map);
 		ServerCommand("map de_mirage");
 	}
 }
