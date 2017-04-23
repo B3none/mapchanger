@@ -20,7 +20,6 @@ public Plugin myinfo =
 public void OnMapStart()
 {
 	CreateTimer(5.0, CheckMap);
-	PrintToChatAll("%s Timer Started", TAG_MESSAGE);
 }
 
 public Action CheckMap(Handle timer)
