@@ -27,7 +27,7 @@ public Action CheckMap(Handle timer)
 	char map[32];
 	GetCurrentMap(map, sizeof(map));
 	
-	if(StrEqual(map, "de_dust", false) || StrEqual(map, "de_nuke", false) || StrEqual(map, "de_aztec", false))
+	if(StrEqual(map, "de_dust", false) || StrEqual(map, "de_nuke", false) || StrEqual(map, "de_aztec", false) || !StrContains(map, "de_"))
 	{
 		PrintToChatAll("%s Eek! This is %s, the map will be changed!", TAG_MESSAGE, map);
 		ServerCommand("map de_mirage");
